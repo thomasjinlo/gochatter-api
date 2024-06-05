@@ -24,7 +24,7 @@ func (p *PushServer) Broadcast(author, content string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	url := "http://" + p.ip + ":8444" + "/send_message"
+	url := "https://" + p.ip + ":2096" + "/send_message"
 	r, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
 	if err != nil {
 		return nil, err

@@ -11,4 +11,4 @@ RUN ["go", "install", "./cmd/gochatter-api"]
 # Command to run the executable
 CMD ["gochatter-api"]
 
-ENV PUSH_SERVER_IP="174.21.168.129"
+ENV PUSH_SERVER_IP="gochatter.app"
