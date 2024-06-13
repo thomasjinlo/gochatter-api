@@ -22,7 +22,7 @@ func main() {
 	psIp := os.Getenv("PUSH_SERVER_IP")
 	ps := pushserver.NewPushServer(psIp)
 	log.Fatal(http.ListenAndServeTLS(
-		":2096",
+		":8443",
 		filepath.Join(rootPath, ".credentials", "cert.pem"),
 		filepath.Join(rootPath, ".credentials", "key.pem"),
 		handlers.SetupRoutes(ps)))
