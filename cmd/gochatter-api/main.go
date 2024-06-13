@@ -11,12 +11,14 @@ import (
 )
 
 func main() {
+	log.Print("[gochatter-api] Starting up API Server")
+
 	rootPath, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Printf("[gochatter-api] root path %s", rootPath)
 
-	log.Print("[gochatter api] Starting up API Server")
 	psIp := os.Getenv("PUSH_SERVER_IP")
 	ps := pushserver.NewPushServer(psIp)
 	log.Fatal(http.ListenAndServeTLS(
