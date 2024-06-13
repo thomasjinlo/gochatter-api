@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/thomasjinlo/gochatter-api/internal/pushserver"
 	"github.com/thomasjinlo/gochatter-api/internal/handlers"
+	"github.com/thomasjinlo/gochatter-api/internal/pushserver"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	psIp := os.Getenv("PUSH_SERVER_IP")
 	ps := pushserver.NewPushServer(psIp)
 	log.Fatal(http.ListenAndServeTLS(
-		":8443",
+		":2096",
 		filepath.Join(rootPath, ".credentials", "cert.pem"),
 		filepath.Join(rootPath, ".credentials", "key.pem"),
 		handlers.SetupRoutes(ps)))
