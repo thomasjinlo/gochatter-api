@@ -7,7 +7,8 @@ import (
 	"path/filepath"
 
 	"github.com/thomasjinlo/gochatter-api/internal/handlers"
-	"github.com/thomasjinlo/gochatter-api/internal/pushserver"
+	//	"github.com/thomasjinlo/gochatter-api/internal/pushserver"
+	"github.com/thomasjinlo/gochatter-api/internal/send"
 )
 
 func main() {
@@ -19,12 +20,13 @@ func main() {
 	}
 	log.Printf("[gochatter-api] root path %s", rootPath)
 
-	psIp := os.Getenv("PUSH_SERVER_IP")
-	ps := pushserver.NewPushServer(psIp)
+	//	psIp := os.Getenv("PUSH_SERVER_IP")
+	// ps := pushserver.NewPushServer(psIp)
+	s := &send.Sender{}
 	log.Fatal(http.ListenAndServeTLS(
 		":8443",
 		filepath.Join(rootPath, ".credentials", "cert.pem"),
 		filepath.Join(rootPath, ".credentials", "key.pem"),
-		handlers.SetupRoutes(ps)))
+		handlers.SetupRoutes(s)))
 
 }
