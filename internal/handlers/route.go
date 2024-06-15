@@ -103,7 +103,7 @@ func DirectMessage(s DirectMessager) http.HandlerFunc {
 		}
 		err = s.DirectMessage(msg.AccountId, msg.Content)
 		if err != nil {
-			log.Print(err)
+			log.Printf("[gochatter-api] error from redis: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
