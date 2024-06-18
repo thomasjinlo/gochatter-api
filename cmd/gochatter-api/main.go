@@ -26,11 +26,11 @@ func main() {
 		DB:       0,
 	})
 	certPool := x509.NewCertPool()
-	wsCert, err := os.ReadFile(filepath.Join(rootPath, ".credentials", "ws-cert.pem"))
+	rootCA, err := os.ReadFile(filepath.Join(rootPath, ".credentials", "root-ca.crt"))
 	if err != nil {
 		log.Printf("[gochatter-api] error reading ws cert: %v", err)
 	}
-	certPool.AppendCertsFromPEM(wsCert)
+	certPool.AppendCertsFromPEM(rootCA)
 	cert, err := tls.LoadX509KeyPair(
 		filepath.Join(rootPath, ".credentials", "cert.pem"),
 		filepath.Join(rootPath, ".credentials", "key.pem"),
