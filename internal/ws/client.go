@@ -46,6 +46,7 @@ func (c *Client) SendDirectMessage(targetAccountId, sourceAccountId, content str
 	for _, wsIp := range wsIps {
 		url := "https://" + wsIp + ":8444" + "/direct_message"
 		r, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
+		r.Header.Add("Content-Type", "application/json")
 		res, err := c.hc.Do(r)
 		if err != nil {
 			return err
