@@ -43,7 +43,9 @@ func (c *Client) SendDirectMessage(targetAccountId, sourceAccountId, content str
 	if err != nil {
 		return err
 	}
+	log.Printf("[gochatter-api] ws ips %v", len(wsIps))
 	for _, wsIp := range wsIps {
+		log.Printf("[gochatter-api] sending dm to %s", wsIp)
 		url := "https://" + wsIp + ":8444" + "/direct_message"
 		r, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
 		r.Header.Add("Content-Type", "application/json")
